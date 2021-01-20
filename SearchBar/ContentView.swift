@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var text = ""
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            SearchBar(text: $text)
+            
+            List((0 ..< 20).filter({ "\($0)".contains(text) || text.isEmpty}), id: \.self) {  i in
+                Text("\(i)")
+            }
+        }
     }
 }
 
